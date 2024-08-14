@@ -18,8 +18,20 @@ $(System.PlanId) = A string-based identifier for a single pipeline run.
 
 $(System.JobId) = A unique identifier for a single attempt of a single job. The value is unique to the current pipeline.
 
+$org = Please make sure to change it to your organization Name 
+
+$ServiceConnectionName = Please make sure to change it to your Service Connection name
+
+
+# Pipelines:
+OIDCToken.yml = Example of how to use the Api
+
+OIDCTokenWithServiceConnection.yml = Example of how to use the Api with additional parameters 
+
 
 # More information:
 
 This documentation have an yaml example to generate an OIDC token using powershell script and predefine variables to guarantee the security and an easier automation
+
+
 
