@@ -22,6 +22,9 @@ $org = Please make sure to change it to your organization Name
 
 $ServiceConnectionName = Please make sure to change it to your Service Connection name
 
+$ClientId = Client ID of the AppRegistrations used in the service connection
+
+$TenantId = Your Tenant ID
 
 # Pipelines:
 OIDCToken.yml = Example of how to use the Api
