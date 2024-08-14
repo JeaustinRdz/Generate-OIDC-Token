@@ -1,0 +1,45 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger: none
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: PowerShell@2
+  env:
+    ADO_PAT: $(System.AccessToken)
+  inputs:
+    targetType: 'inline'
+    script: |
+      function GetOIDCToken( $DevOpsOrg , $ServiceConnectionName) {
+      $url = "https://dev.azure.com/$DevOpsOrg/$(System.TeamProjectId)/_apis/distributedtask/hubs/build/plans/$(System.PlanId)/jobs/$(System.JobId)/oidctoken?serviceConnectionId=$ServiceConnectionName&api-version=7.1-preview.1"
+      
+      # Auth with a bearer token
+      $headers = @{Authorization = "Bearer $(System.AccessToken)"}
+
+      # Create the OIDC token  
+      $response = Invoke-RestMethod -Uri $url -Method Post -Headers $headers -ContentType "application/json"
+      
+      # return the response
+      return $response
+      }
+
+      #Organization Name
+      $org = "{Your_Organization}"
+      $ClientId = "{Client_ID_AppRegistrations}"
+      $TenantId = "{Your_Tenant_ID}"
+
+      #Service Connection Name
+      $ServiceConnectionName = "{Your_ServiceConnectionName}"
+
+      #Save the result
+      $result = GetOIDCToken -DevOpsOrg $org -ServiceConnectionName  $ServiceConnectionName
+
+      #Create a variable to save only the oidctoken
+      $OidcToken = $result.oidcToken
+
+      az login --service-principal --username $ClientId --tenant $TenantId --federated-token $OidcToken
