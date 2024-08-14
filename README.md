@@ -54,6 +54,8 @@ Pre requirements steps:
 
 8- Add the name that you required and save it
 
+9- Use the pipeline OIDCTokenLogin.yml
+
 
 # More information:
 
