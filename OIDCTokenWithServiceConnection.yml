@@ -29,13 +29,13 @@ steps:
       }
 
       #Organization Name
-      $org = "v-jeaustinro"
+      $org = "{Your_Organization}"
 
       #Service Connection Name
-      $ServiceConnectionName = "JeaustinGeneral"
+      $ServiceConnectionName = "{Your_ServiceConnectionName}"
 
       #Save the result
-      $result = GetOIDCToken -DevOpsOrg $org 
+      $result = GetOIDCToken -DevOpsOrg $org -ServiceConnectionName  $ServiceConnectionName
 
       # write the response to the console
       $result | ConvertTo-Json
