@@ -29,7 +29,7 @@ steps:
       }
 
       #Organization Name
-      $org = "v-jeaustinro"
+      $org = "{Your_Organization}"
 
       #Save the result
       $result = GetOIDCToken -DevOpsOrg $org 
